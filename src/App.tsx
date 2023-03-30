@@ -8,14 +8,17 @@ function App() {
     async function fetchData() {
     
       const dataI = await fetch('https://jsonplaceholder.typicode.com/users')
-      // const dataI = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
       .then((response) => response.json())
       .then(info => setInfo(info))
     }  
 
+    useEffect(() => {
+      fetchData()
+    }, [])
+  
+
   return (
     <div className="app">
-      <button onClick={fetchData}>See content</button>
       {info.map((item) => (
         <p key={item.name}>{item.name}</p>
       ))}
